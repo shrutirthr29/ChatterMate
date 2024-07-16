@@ -48,7 +48,7 @@ function login() {
   return (
     <div className="flex justify-center items-center bg-panelbackground h-screen w-screen flex-col gap-6">
             <div className="flex items-center justify-center gap-2 text-white">
-                <Image src="/circle-loader.gif" alt="loader" height={300} width={300} />
+                <Image src="/chattermate_gif.gif" alt="loader" height={300} width={300} />
                 <span className="text-7xl text-greenishblue" >ChatterMate</span>
             </div>
             <button className="flex items-center justify-center gap-7 bg-greenishblue p-5 rounded-lg" onClick={handleLogin}>

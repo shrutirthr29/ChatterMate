@@ -13,7 +13,7 @@ function onboarding() {
   return (
     <div className="flex justify-center items-center bg-panelbackground h-screen w-screen flex-col text-white">
       <div className="flex items-center justify-center gap-2">
-        <Image src="/circle-loader.gif" alt="chattermate" height={300} width={300} />
+        <Image src="/chattermate_gif.gif" alt="chattermate" height={300} width={300} />
         <span className="text-7xl text-greenishblue" >ChatterMate</span>
       </div>
       <h2 className="text-2xl text-greenishblue">Create your profile</h2>

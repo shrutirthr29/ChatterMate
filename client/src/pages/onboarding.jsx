@@ -9,7 +9,7 @@ function onboarding() {
   const [{ userInfo }] = useStateProvider();
   const [name, setName] = useState(userInfo?.name || "")
   const [about, setAbout] = useState("")
-  const [image, setImage] = useState("/avataar.png")
+  const [image, setImage] = useState("/avtar.png")
   return (
     <div className="flex justify-center items-center bg-panelbackground h-screen w-screen flex-col text-white">
       <div className="flex items-center justify-center gap-2">

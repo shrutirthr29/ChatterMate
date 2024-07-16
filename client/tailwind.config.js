@@ -11,11 +11,11 @@ module.exports = {
       },
       colors: {
         // secondary: "#8696a0",
-        // "teal-light": "#7ae3c3",
+        "teal-light": "#7ae3c3",
         // "photopicker-overlay-background": "rgba(30,42,49,0.8)",
         // "dropdown-background": "#233138",
         // "dropdown-background-hover": "#182229",
-        // "input-background": " #2a3942",
+        "input-background": "#1f5d69",
         // "primary-strong": "#e9edef",
         // "panel-header-background": "#202c33",
         // "panel-header-icon": "#aebac1",

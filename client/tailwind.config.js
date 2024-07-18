@@ -30,6 +30,7 @@ module.exports = {
         // "bubble-meta": "hsla(0,0%,100%,0.6)",
         // "icon-ack": "#53bdeb",
         "panelbackground": "#F0EFF7",
+        "lightwhite":"#cac7d9",
         "greenishblue": "#265b72",
         "aqua": "#0fb6f9",
       },

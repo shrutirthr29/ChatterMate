@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }) {
         <title>ChatterMate</title>
         <link rel="shortcut icon" href="/chattermate_favicon.png" />
       </Head>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </StateProvider>
   )
 }

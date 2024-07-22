@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image"
 import { FcGoogle } from "react-icons/fc"
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
@@ -12,50 +12,67 @@ import { reducerCases } from "@/context/constants";
 function login() {
   const router = useRouter();
 
-  const [{}, dispatch] = useStateProvider()
+  const [{ userInfo,newUser}, dispatch] = useStateProvider()
+
+  useEffect(()=>{
+    if(userInfo?.id && !newUser) router.push("/")
+  },[userInfo,newUser])
 
   const handleLogin = async () => {
     const provider = new GoogleAuthProvider()
-    const {user:{displayName:name,email,photoURL:profileImage},
-  } = await signInWithPopup(firebaseAuth,provider)
-  try{
-    if(email){
-      const {data} = await axios.post(CHECK_USER_ROUTE, {email})
+    const { user: { displayName: name, email, photoURL: profileImage },
+    } = await signInWithPopup(firebaseAuth, provider)
+    try {
+      if (email) {
+        const { data } = await axios.post(CHECK_USER_ROUTE, { email })
 
-      if(!data.status){
-        if(!data.status){
+        if (!data.status) {
+
           dispatch({
             type: reducerCases.SET_NEW_USER,
             newUser: true,
           })
           dispatch({
             type: reducerCases.SET_USER_INFO,
-            userInfo:{
+            userInfo: {
               name,
               email,
               profileImage,
-              status:""
+              status: ""
             }
           })
+
+          router.push("/onboarding")
+        }else{
+          const {id,name,email,profilePicture:profileImage,status} = data
+          dispatch({
+            type: reducerCases.SET_USER_INFO,
+            userInfo: {
+              id,
+              name,
+              email,
+              profileImage,
+              status,
+            }
+          })
+          router.push("/")
         }
-        router.push("/onboarding")
       }
+    } catch (err) {
+      console.log(err)
     }
-  }catch(err){
-    console.log(err)
-  }
   }
   return (
     <div className="flex justify-center items-center bg-panelbackground h-screen w-screen flex-col gap-6">
-            <div className="flex items-center justify-center gap-2 text-white">
-                <Image src="/chattermate_gif.gif" alt="loader" height={300} width={300} />
-                <span className="text-7xl text-greenishblue" >ChatterMate</span>
-            </div>
-            <button className="flex items-center justify-center gap-7 bg-greenishblue p-5 rounded-lg" onClick={handleLogin}>
-                <FcGoogle className="text-4xl" />
-                <span className="text-white text-2xl">Login with Google</span>
-            </button>
-        </div>
+      <div className="flex items-center justify-center gap-2 text-white">
+        <Image src="/chattermate_gif.gif" alt="loader" height={300} width={300} />
+        <span className="text-7xl text-greenishblue" >ChatterMate</span>
+      </div>
+      <button className="flex items-center justify-center gap-7 bg-greenishblue p-5 rounded-lg" onClick={handleLogin}>
+        <FcGoogle className="text-4xl" />
+        <span className="text-white text-2xl">Login with Google</span>
+      </button>
+    </div>
   );
 }
 

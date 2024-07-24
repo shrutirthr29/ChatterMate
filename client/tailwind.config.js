@@ -21,7 +21,7 @@ module.exports = {
         // "icon-lighter": "#8696a0",
         // "icon-green": "#00a884",
         // "search-input-container-background": "#111b21",
-        // "conversation-border": "rgba(134,150,160,0.15)",
+        "conversation-border": "rgba(134,150,160,0.15)",
         // "conversation-panel-background": "#0b141a",
         "background-default-hover": "#202c33",
         // "incoming-background": "#202c33",

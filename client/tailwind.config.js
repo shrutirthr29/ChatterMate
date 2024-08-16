@@ -10,7 +10,7 @@ module.exports = {
         "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        // secondary: "#8696a0",
+        secondary: "#545556",
         "photopicker-overlay-background": "rgba(30,42,49,0.8)",
         "dropdown-background": "#233138",
         // "dropdown-background-hover": "#182229",
@@ -22,7 +22,7 @@ module.exports = {
         // "icon-green": "#00a884",
         "search-input-container-background": "#dde5eb",
         "conversation-border": "rgba(134,150,160,0.15)",
-        // "conversation-panel-background": "#0b141a",
+        "conversation-panel-background": "#0b141a",
         "background-default-hover": "#202c33",
         // "incoming-background": "#202c33",
         // "outgoing-background": "#005c4b",

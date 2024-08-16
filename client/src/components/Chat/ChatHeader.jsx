@@ -16,10 +16,10 @@ function ChatHeader() {
       </div>
     </div>
     <div className="flex gap-6">
-      <MdCall className="cursor-pointer text-xl"/>
-      <IoVideocam className="cursor-pointer text-xl"/>
-      <BiSearchAlt2 className="cursor-pointer text-xl"/>
-      <BsThreeDotsVertical className="cursor-pointer text-xl"/>
+      <MdCall className="text-greenishblue cursor-pointer text-xl"/>
+      <IoVideocam className="text-greenishblue cursor-pointer text-xl"/>
+      <BiSearchAlt2 className="text-greenishblue cursor-pointer text-xl"/>
+      <BsThreeDotsVertical className="text-greenishblue cursor-pointer text-xl"/>
     </div>
   </div>
 );

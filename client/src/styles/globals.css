@@ -8,5 +8,6 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb{
-    background-color: #e2f009;
+    /* background-color: #265b72; */
+    background-color: #dde5eb;
 }

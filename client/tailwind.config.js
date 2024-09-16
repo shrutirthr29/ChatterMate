@@ -26,7 +26,7 @@ module.exports = {
         "background-default-hover": "#202c33",
         // "incoming-background": "#202c33",
         // "outgoing-background": "#005c4b",
-        // "bubble-meta": "hsla(0,0%,100%,0.6)",
+        "bubble-meta": "hsla(0,0%,100%,0.6)",
         // "icon-ack": "#53bdeb",
         "panelbackground": "#F0EFF7",
         "lightwhite":"#cac7d9",

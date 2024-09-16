@@ -27,7 +27,7 @@ module.exports = {
         // "incoming-background": "#202c33",
         // "outgoing-background": "#005c4b",
         "bubble-meta": "hsla(0,0%,100%,0.6)",
-        // "icon-ack": "#53bdeb",
+        "icon-ack": "#53bdeb",
         "panelbackground": "#F0EFF7",
         "lightwhite":"#cac7d9",
         "greenishblue": "#265b72",

@@ -1,3 +1,4 @@
+import { reducerCases } from "@/context/constants";
 import { useStateProvider } from "@/context/StateContext";
 import { ADD_MESSAGE_ROUTE } from "@/utils/ApiRoutes";
 import axios from "axios";
@@ -7,7 +8,7 @@ import { FaMicrophone } from "react-icons/fa";
 import { ImAttachment } from "react-icons/im"
 import { MdSend } from "react-icons/md";
 function MessageBar() {
-  const [{userInfo, currentChatUser},dispatch]=useStateProvider()
+  const [{userInfo, currentChatUser, socket},dispatch]=useStateProvider()
   const [message, setMessage] = useState("")
   const sendMessage = async () => {
     try {
@@ -15,6 +16,18 @@ function MessageBar() {
         to:currentChatUser?.id,
         from: userInfo?.id,
         message,
+      })
+      socket.current.emit("send-msg",{
+        to:currentChatUser?.id,
+        from: userInfo?.id,
+        message: data.message,
+      })
+      dispatch({
+        type: reducerCases.ADD_MESSAGE,
+        newMessage: {
+          ...data.message,
+        },
+        fromSelf: true,
       })
       setMessage("")
     } catch (err) {

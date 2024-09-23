@@ -17,7 +17,7 @@ function ChatContainer() {
                   <div className={`text-black px-2 py-[5px] text-sm rounded-md flex gap-2 items-end max-w-[45%] ${message.senderId === currentChatUser.id ? "bg-search-input-container-background" : "bg-greenishblue text-white"}`}>
                     <span className="break-all">{message.message}</span>
                     <div className="flex gap-1 items-end">
-                      <span className="text-bubble-meta text-[11px] pt-1 min-w-fit">
+                      <span className={`text-[11px] pt-1 min-w-fit ${message.senderId === currentChatUser.id ? "text-calendar-text-light" : "text-bubble-meta"}`}>
                         {
                           calculateTime(message.createdAt)
                         }

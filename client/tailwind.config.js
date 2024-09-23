@@ -32,6 +32,7 @@ module.exports = {
         "lightwhite":"#cac7d9",
         "greenishblue": "#265b72",
         "aqua": "#0fb6f9",
+        "calendar-text-light": "#5a6067"
       },
       gridTemplateColumns: {
         main: "1fr 2.4fr",

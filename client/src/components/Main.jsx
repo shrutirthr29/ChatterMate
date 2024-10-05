@@ -13,7 +13,7 @@ import { io } from "socket.io-client";
 
 function Main() {
   const router = useRouter()
-  const [{ userInfo, currentChatUser }, dispatch] = useStateProvider()
+  const [{ userInfo, currentChatUser, messageSearch }, dispatch] = useStateProvider()
   const [redirectLogin, setRedirectLogin] = useState(false)
   const [socketEvent, setSocketEvent] = useState(false)
   const socket = useRef()

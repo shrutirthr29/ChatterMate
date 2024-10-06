@@ -10,17 +10,18 @@ import { useStateProvider } from "@/context/StateContext";
 import { reducerCases } from "@/context/constants";
 import Chat from "./Chat/Chat";
 import { io } from "socket.io-client";
+import SearchMessages from "./Chat/SearchMessages";
 
 function Main() {
   const router = useRouter()
-  const [{ userInfo, currentChatUser, messageSearch }, dispatch] = useStateProvider()
+  const [{ userInfo, currentChatUser, messagesSearch }, dispatch] = useStateProvider()
   const [redirectLogin, setRedirectLogin] = useState(false)
   const [socketEvent, setSocketEvent] = useState(false)
   const socket = useRef()
 
-  useEffect(()=>{
-    if(redirectLogin) router.push("/login")
-  },[redirectLogin])
+  useEffect(() => {
+    if (redirectLogin) router.push("/login")
+  }, [redirectLogin])
 
   onAuthStateChanged(firebaseAuth, async (currentUser) => {
     if (!currentUser) setRedirectLogin(true)
@@ -29,7 +30,7 @@ function Main() {
       if (!data.status) {
         router.push("/login")
       }
-      if(data?.data){
+      if (data?.data) {
 
         const { id, name, email, profilePicture: profileImage, status } = data.data
         dispatch({
@@ -47,30 +48,30 @@ function Main() {
   })
 
   useEffect(() => {
-    if(userInfo){
+    if (userInfo) {
       socket.current = io(HOST)
       socket.current.emit("add-user", userInfo.id)
-      dispatch({type: reducerCases.SET_SOCKET, socket})
+      dispatch({ type: reducerCases.SET_SOCKET, socket })
     }
-  },[userInfo])
+  }, [userInfo])
 
-  useEffect(()=>{
-    if(socket.current && !socketEvent){
-      socket.current.on("msg-receive", (data)=>{
+  useEffect(() => {
+    if (socket.current && !socketEvent) {
+      socket.current.on("msg-receive", (data) => {
         dispatch({
           type: reducerCases.ADD_MESSAGE,
-          newMessage:{
+          newMessage: {
             ...data.message,
           }
         })
       })
       setSocketEvent(true)
     }
-  },[socket.current])
+  }, [socket.current])
 
-  useEffect(()=>{
-    const getMessages = async()=>{
-      const {data:{messages}} = await axios.get(
+  useEffect(() => {
+    const getMessages = async () => {
+      const { data: { messages } } = await axios.get(
         `${GET_MESSAGES_ROUTE}/${userInfo.id}/${currentChatUser.id}`
       )
       dispatch({
@@ -78,7 +79,7 @@ function Main() {
         messages
       })
     }
-    if(currentChatUser?.id){
+    if (currentChatUser?.id) {
       getMessages()
     }
   }, [currentChatUser])
@@ -87,7 +88,14 @@ function Main() {
     <>
       <div className="grid grid-cols-main h-screen w-screen max-h-screen max-width-full overflow-hidden">
         <ChatList />
-        {currentChatUser ? <Chat/> : <Empty/>}
+        {currentChatUser ?
+          (<div className={messagesSearch ? "grid grid-cols-2" : "grid-cols-2"}> 
+            <Chat />
+            {
+              messagesSearch && <SearchMessages />
+            }
+          </div>
+          ) : (<Empty />)}
       </div>
     </>
   );

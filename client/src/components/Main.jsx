@@ -11,10 +11,12 @@ import { reducerCases } from "@/context/constants";
 import Chat from "./Chat/Chat";
 import { io } from "socket.io-client";
 import SearchMessages from "./Chat/SearchMessages";
+import VideoCall from "./Call/VideoCall";
+import VoiceCall from "./Call/VoiceCall";
 
 function Main() {
   const router = useRouter()
-  const [{ userInfo, currentChatUser, messagesSearch }, dispatch] = useStateProvider()
+  const [{ userInfo, currentChatUser, messagesSearch, videoCall, voiceCall, incomingVoiceCall, incomingVideoCall }, dispatch] = useStateProvider()
   const [redirectLogin, setRedirectLogin] = useState(false)
   const [socketEvent, setSocketEvent] = useState(false)
   const socket = useRef()
@@ -86,6 +88,25 @@ function Main() {
 
   return (
     <>
+
+      {
+        videoCall && (
+          <div className="h-screen w-screen max-h-full overflow-hidden">
+            <VideoCall />
+          </div>
+        )
+      }
+      {
+        voiceCall && (
+          <div className="h-screen w-screen max-h-full overflow-hidden">
+            <VoiceCall />
+          </div>
+        )
+      }
+
+      {
+        !videoCall && !voiceCall && (
+
       <div className="grid grid-cols-main h-screen w-screen max-h-screen max-width-full overflow-hidden">
         <ChatList />
         {currentChatUser ?
@@ -97,6 +118,9 @@ function Main() {
           </div>
           ) : (<Empty />)}
       </div>
+        )
+      }
+
     </>
   );
 }

@@ -7,7 +7,7 @@ import { GET_INITIAL_CONTACTS_ROUTE } from "@/utils/ApiRoutes";
 
 function List() {
 
-  const [{userInfo, userContacts}, dispatch] = useStateProvider()
+  const [{userInfo, userContacts, filteredContacts}, dispatch] = useStateProvider()
   useEffect(()=>{
     const getContacts = async()=>{
       try {
@@ -25,7 +25,8 @@ function List() {
   return (
     <div className="bg-search-input-container-background flex-auto overflow-auto max-h-full custom-scrollbar">
       {
-        userContacts.map((contact)=> (<ChatListItem data={contact} key={contact.id} />))
+        filteredContacts && filteredContacts.length>0 ? (filteredContacts.map((contact)=> (<ChatListItem data={contact} key={contact.id} />)))
+        : (userContacts.map((contact)=> (<ChatListItem data={contact} key={contact.id} />)))
       }
     </div>
   );
